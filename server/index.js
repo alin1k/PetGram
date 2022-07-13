@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import postRoutes from "./routes/posts.js";
+import postRoutes from "./routes/pets.js";
 import mongoose from "mongoose";
 import cors from "cors";
 

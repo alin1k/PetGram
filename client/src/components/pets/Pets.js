@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import { deleteByName } from "../../api/index.js";
+import { deletePetById } from "../../api/index.js";
 import axios  from "axios";
 
-import Pet from "../pet/Pet";
+import Pet from "./Pet.js";
 
 function Pets(props){
     const [pets, setPets] = useState([]);
@@ -12,7 +12,6 @@ function Pets(props){
         //fetch all pets from the server
         axios.get('http://localhost:5000/pets')
             .then(function (response) {
-                console.log(response.data);
                 //set pets array to fethed data
                 setPets(response.data);
             })
@@ -26,9 +25,9 @@ function Pets(props){
             <h1 className="display-3 text-center my-4">My Pets</h1>
             {pets.map((pet)=> 
                 <Pet 
-                key={pet.name}
+                key={pet._id}
                 petObject={pet}
-                deletePet={deleteByName}
+                deletePet={deletePetById}
                 setTrigger={setTrigger}
                 /> 
             )}

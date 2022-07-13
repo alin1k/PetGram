@@ -1,5 +1,24 @@
-.btn-close{
+button{
+    background-color: transparent;
+    border: 0;
+}
+
+.btn-exit{
     position: absolute;
     top: 1rem;
     right: 1rem;
+}
+
+.btn-edit{
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+}
+
+.btn-edit:hover{
+    color: #4d4d4d;
+}
+
+.btn-exit:hover{
+    color: #4d4d4d;
 }

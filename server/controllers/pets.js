@@ -13,7 +13,18 @@ export const getPets = async (req,res)=>{
     }
 }
 
-export const newPet = async (req, res)=>{
+export const getPetsByType = async (req, res)=>{
+    const petType = req.params.type
+
+    try {
+        const pets = await Pet.find({type: petType});
+        res.status(200).json(pets);
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+}
+
+export const postPet = async (req, res)=>{
     const pet = req.body;
     const createPet = new Pet(pet);
 
@@ -37,6 +48,8 @@ export const deletePets = async (req, res)=>{
 }
 
 
+
+
 ///////////////////////////   Actions for a specific pet   ///////////////////////////
 
 export const getPetByName = async (req, res)=>{
@@ -49,9 +62,40 @@ export const getPetByName = async (req, res)=>{
     }
 }
 
+export const getPetById = async (req, res)=>{
+    try {
+        const pet = await Pet.findById(req.params.petId);
+
+        res.status(200).json(pet);
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+}
+
+export const updatePetById = async (req, res)=>{
+    try {
+        const pet = req.body;
+        await Pet.findByIdAndUpdate(req.params.petId, pet);
+
+        res.status(200).json(pet);
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
 export const deletePetByName = async (req,res)=>{
     try {
         await Pet.deleteOne({name: req.params.petName});
+
+        res.status(200).json("Pet Deleted");
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+export const deletePetById = async (req, res)=>{
+    try {
+        await Pet.findByIdAndDelete(req.params.petId);
 
         res.status(200).json("Pet Deleted");
     } catch (error) {

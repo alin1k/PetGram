@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import Pets from "./components/pets/Pets.js";
 import Navbar from "./components/Navbar.js";
-import AddPet from "./components/AddPet.js"
+import Form from "./components/Form.js"
 
 function App(){
+
     return(
         <Router>
             <div className="container-fluid p-0">
                 <Navbar />
                 <Routes>
-                    <Route exact path="/" element={<Pets />}/>
-                    <Route path="/add-pet" element={<AddPet />} />
+                    <Route exact path="/" element={<Pets />} />
+                    <Route path="/add-pet" element={<Form title="Add Pet" />} />
+                    <Route path="/edit-pet/:petId" element={<Form title="Edit Pet" />} />
                     <Route
                     path="*"
                     element={
