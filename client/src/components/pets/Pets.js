@@ -10,7 +10,7 @@ function Pets(props){
 
     useEffect(()=>{
         //fetch all pets from the server
-        axios.get('http://localhost:5000/pets')
+        axios.get(process.env.REACT_APP_API_URL)
             .then(function (response) {
                 //set pets array to fethed data
                 setPets(response.data);
